@@ -1,0 +1,211 @@
+---
+title: "Let's Fly!"
+date: "2024-05-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Air Travel Story 
+
+![**Infographic**](Let's Travel!.png)
+
+Intro to data: This dataset examined the booking trends of 50,000 bookings. Some metrics in this dataset included the number of passengers per booking, day of flight departure, departure hour, flight duration & more! This story explores the difference of booking patterns between groups of 2 and under versus groups of three or more passengers.
+
+
+
+```{r, echo=FALSE}
+airline.data= read.csv("customer_booking.csv", header=TRUE)
+```
+
+```{r, echo=FALSE}
+#Packages Needed 
+library("ggplot2")
+library("gridExtra")
+library("dplyr")
+library("plotly")
+```
+
+```{r, echo=FALSE}
+#Clean up 
+airline.data$trip_type=factor(airline.data$trip_type)
+airline.data$sales_channel=factor(airline.data$sales_channel)
+airline.data$flight_day=factor(airline.data$flight_day, levels=c("Sun", "Mon","Tue", "Wed", "Thu", "Fri", "Sat"), ordered=TRUE)
+airline.data$route=factor(airline.data$route)
+airline.data$booking_origin=factor(airline.data$booking_origin)
+airline.data$wants_extra_baggage=factor(airline.data$wants_extra_baggage, levels=c("0", "1"), labels=c("No", "Yes"), ordered=TRUE)
+airline.data$wants_preferred_seat=factor(airline.data$wants_preferred_seat, levels=c("0", "1"), labels=c("No", "Yes"), ordered=TRUE)
+airline.data$wants_in_flight_meals=factor(airline.data$wants_in_flight_meals, levels=c("0", "1"), labels=c("No", "Yes"), ordered=TRUE)
+airline.data$passengers=factor(airline.data$num_passengers, levels=c("1", "2", "3", "4", "5", "6", "7", "8","9"))
+airline.data$cut.pass = cut(airline.data$num_passengers,
+                               breaks = c(-Inf, 2, Inf),  # Adjusted breaks and labels
+                               labels = c("Singles to Duos", "Trios and More"),
+                               ordered = TRUE)
+
+attach(airline.data)
+```
+
+```{r, echo=FALSE}
+#Color Palette
+kacys= c("#90d8b2", "#8b95f6","#8dd2dd", "#8babf1", "#9b8bf4", "#eeb5b4","#eec09b", "#ebdb99","#bcd49a")
+```
+
+
+
+# Flight Duration Across Different Passenger Groups
+
+
+```{r, echo=FALSE}
+#Plot 1: Flight Duration Across Diff Passenger Groups
+p1= ggplot(airline.data, aes(x=flight_duration, y=passengers, fill=passengers))+ 
+geom_boxplot()+
+guides(fill="none")+
+  scale_fill_manual(values=kacys)+
+  labs(y="Number of Passengers", x="Flight Duration (hours)", title="Flight Duration Per Passenger Group")
+
+p2= ggplot(airline.data, aes(x=flight_duration, y=cut.pass, fill=cut.pass))+ 
+geom_boxplot()+
+guides(fill="none")+
+  scale_fill_manual(values=kacys)+
+  labs(y="Groups", x="Flight Duration (hours)", title= "Flight Duration for Singles/Duos and Trios & More")
+
+grid.arrange(p1, p2)
+```
+
+**Out of 50,000 bookings analyzed, groups of three or more passengers typically experience median flight durations of 7.05 hours, while singles and duos have slightly longer median flights at 7.5 hours.**
+
+
+
+```{r, echo=FALSE}
+#Subset Data for Histograms comparing Booking Trends
+pass1to2 <- subset(airline.data, num_passengers %in% c(1, 2))
+pass3to9 <- subset(airline.data, num_passengers %in% c(3,4,5,6,7,8,9))
+```
+
+
+# Booking Dates for Passengers in Singles & Duos versus Trios & More
+
+
+```{r, echo=FALSE}
+h1= ggplot(pass1to2, aes(x=purchase_lead))+
+    geom_vline(xintercept = mean(pass1to2$purchase_lead), color = "red", linetype = "dashed") +
+  geom_histogram(fill="#90d8b2", alpha=0.75, bins=50)+
+  geom_text(aes(x = mean(pass1to2$purchase_lead), label = paste("Mean =79.48")),
+            y = 10, vjust = -1, color = "black") +
+    labs(x="Days between Booking and Travel date",y="Count of Bookings", title="Booking Dates for Passengers in Singles and Duos")
+
+h2= ggplot(pass3to9, aes(x=purchase_lead))+
+  geom_vline(xintercept = mean(pass3to9$purchase_lead), color = "red", linetype = "dashed") +
+  geom_histogram(fill= "#8b95f6", alpha=0.75, bins=50)+
+  geom_text(aes(x = mean(pass3to9$purchase_lead), label = paste("Mean = 126.2")),
+            y = 10, vjust = -1, color = "black") +
+  labs(x="Days between Booking and Travel date", y="Count of Bookings",title="Booking Dates for Passengers in Trios or More")
+
+grid.arrange(h1, h2, nrow=2)
+```
+
+**Using these histograms, we are able to see the distribution of the days between booking and travel dates for different numbers of passengers. Separated by two histograms, groups of 3 or more passengers book their flights an average of 46 day in advance from their travel date. It may be important to note that usually, group flights require more planning and preparing, which leads to needing to book flights in advance.**
+
+
+# Interactive Plot: Trends by Flight Hour for Different Passenger Groups
+
+
+```{r, echo=FALSE}
+line.plot= ggplot(airline.data, aes(x = flight_hour, y = after_stat(count), group = num_passengers, color = passengers)) +
+  geom_line(stat = "count") +
+  labs(x = "Flight Departure Hour",y="Count of Bookings", title = "Trends by Flight Hour for Different Passenger Groups") +
+  scale_color_manual(name="Number of Passengers", values = kacys) +  # Set custom color palette
+  theme_minimal()
+
+ggplotly(line.plot)
+```
+
+**This interactive plot lets you analyze the trends of departure time for each passenger groups and the count for each flight time! As a single traveler myself, I might be more enticed to book a flight at less busier times.**
+
+
+# Flight Day vs. Flight Hour Heatmap
+
+```{r, echo=FALSE}
+flight_counts <- airline.data %>%
+  group_by(flight_day, flight_hour) %>%
+  summarise(count = n())
+
+ggplot(flight_counts, aes(x = flight_hour, y = flight_day)) +
+  geom_tile(aes(fill = count), color = "white") + 
+  scale_fill_gradient(low = "#8dd2dd", high = "darkblue") + 
+  labs(x = "Flight Hour", y = "Flight Day", title = "Flight Day vs. Flight Hour Heatmap") +
+  theme_minimal()  # Customize plot theme as needed
+
+```
+
+**This heat map analyzes the different flight hour-flight day combinations. Based off this graph, we can see the biggest combinations come are from Monday through Thursday 8am to 1pm. This helps us understand how busy an airport can get on specific days and times of the week. For future travelers, this could be helpful in deciding which flights will have the calmest or quietest airport environment. It could even help you determine when TSA lines will be the shortest!**
+
+
+# Length of Stay for Different Passenger Groups
+
+
+```{r, echo=FALSE}
+s1= ggplot(pass1to2, aes(x=length_of_stay))+
+    geom_vline(xintercept = mean(pass1to2$length_of_stay), color = "red", linetype = "dashed") +
+  geom_histogram(fill="#bcd49a", alpha=0.75, bins=50)+
+  geom_text(aes(x = mean(pass1to2$length_of_stay), label = paste("Mean =24.16")),
+            y = 10, vjust = -1, color = "black") +
+    labs(x="Length of Stay (days)",y="Count of Bookings", title="Length of Stay for Passengers in Singles and Duos")+
+  theme_linedraw()
+
+s2= ggplot(pass3to9, aes(x=length_of_stay))+
+  geom_vline(xintercept = mean(pass3to9$length_of_stay), color = "red", linetype = "dashed") +
+  geom_histogram(fill= "#eec09b", alpha=0.75, bins=50)+
+  geom_text(aes(x = mean(pass3to9$length_of_stay), label = paste("Mean = 14.54")),
+            y = 10, vjust = -1, color = "black") +
+  labs(x="Length of Stay (days)", y="Count of Bookings", title="Length of Stay for Passengers in Trios or More")+
+  theme_linedraw()
+
+grid.arrange(s1, s2, nrow=2)
+```
+
+**Using this histogram, we can see that the length of stay for singles and duos last about 9.62 days longer than groups of 3 or more passengers. In terms of relationships, it is typically less expensive to travel as a couple rather than as a family, possibly leading to an increased number of days on vacation.**
+
+
+# Bookings by Day of the Week for Different Passenger Groups
+
+
+```{r, echo=FALSE}
+sing_data = pass1to2 %>%
+  group_by(flight_day, num_passengers) %>%
+  summarise(count = n())
+
+
+sing.plot= ggplot(sing_data, aes(x = flight_day, y = count, fill = factor(num_passengers))) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(x = "Day of the Week", y = "Count of Bookings", fill = "Number of Passengers") +
+  ggtitle("Bookings by Day of the Week in Singles/Duos") +
+  theme_minimal() +
+  scale_fill_manual(values=kacys)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplotly(sing.plot)
+
+```
+
+
+```{r, echo=FALSE}
+tri_data = pass3to9 %>%
+  group_by(flight_day, num_passengers) %>%
+  summarise(count = n())
+
+
+tri.plot= ggplot(tri_data, aes(x = flight_day, y = count, fill = factor(num_passengers))) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(x = "Day of the Week", y = "Count of Bookings", fill = "Number of Passengers") +
+  ggtitle("Bookings by Day of the Week in Trios or More") +
+  theme_minimal() +
+  scale_fill_manual(values=kacys)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplotly(tri.plot)
+```
+
+**This dataset analyzes 50,000 bookings using metrics such as passenger count for each booking and what day of the week it was booked for. Using these two metrics, we can see which day of the week is most common for different number of passengers in this interactive plot. This could influence the decision on what day of the week to book a flight based on how many passengers in your group!**
+

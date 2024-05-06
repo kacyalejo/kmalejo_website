@@ -1,0 +1,12 @@
+---
+title: "shiny"
+date: "2024-04-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Confidence Interval App 
+
+<iframe src="https://abby-flynt.shinyapps.io/Kacy-Reese-SP24/" class="l-screen-inset shaded" height="1000px"></iframe>

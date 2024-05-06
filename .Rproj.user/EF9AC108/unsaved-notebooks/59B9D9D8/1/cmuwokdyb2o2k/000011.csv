@@ -1,0 +1,7 @@
+"0","line.plot= ggplot(airline.data, aes(x = flight_hour, y = after_stat(count), group = num_passengers, color = passengers)) +"
+"0","  geom_line(stat = ""count"") +"
+"0","  labs(x = ""Flight Departure Hour"", y = ""Count"", title = ""Trends by Flight Hour for Different Passenger Groups"") +"
+"0","  scale_color_manual(name=""Number of Passengers"", values = kacys) +  # Set custom color palette"
+"0","  theme_minimal()"
+"0",""
+"0","ggplotly(line.plot)"

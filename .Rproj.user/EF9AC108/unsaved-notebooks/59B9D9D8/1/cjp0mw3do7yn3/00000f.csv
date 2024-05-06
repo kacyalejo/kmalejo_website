@@ -1,0 +1,3 @@
+"0","#Subset Data for Histograms comparing Booking Trends"
+"0","pass1to2 <- subset(airline.data, num_passengers %in% c(1, 2))"
+"0","pass3to9 <- subset(airline.data, num_passengers %in% c(3,4,5,6,7,8,9))"

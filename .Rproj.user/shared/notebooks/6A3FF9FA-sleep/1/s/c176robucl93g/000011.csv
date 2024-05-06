@@ -1,0 +1,3 @@
+"0","sleep.comp= sleep.data[complete.cases(sleep.data),]"
+"0","rm(sleep.data)"
+"0","attach(sleep.comp)"

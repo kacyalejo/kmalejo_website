@@ -1,0 +1,69 @@
+---
+title: "Past Course Visualizations"
+description: |
+  Over the semester, we worked with datasets in RStudio and used the data to translate them into visualizations. These two came from a past assignment and an exam. 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Two of My Favorite Visualizations 
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(Lock5Data)
+library(MASS)
+library(wesanderson)
+load("hersdata.RData")
+data(survey)
+survey.sub = survey[complete.cases(survey), ]
+hersdata.comp= hersdata[complete.cases(hersdata),]
+
+```
+
+
+# Height across Various Smoking Frequencies
+
+```{r, echo=FALSE}
+ggplot(survey.sub, aes(x=Smoke, y=Height, fill=Smoke))+
+  geom_violin(scale="width", alpha=0.5)+
+  geom_boxplot(width=.25)+
+  labs(x="Smoking Frequency", y="Height (cm)")+
+  ggtitle("Violin Plots of Height across Smoking Frequencies")+ 
+scale_color_manual(values = wes_palette("GrandBudapest2")) + 
+  scale_fill_manual(values = wes_palette("GrandBudapest2"),name="Smoking Frequency", labels = c("Heavy", "Never", "Occasionally", "Regularly"))
+```
+
+**Dataset:** 
+
+The data set used is a basic survey of subjects ranging from 16 to 70 years old that measured variables such as height, pulse, and exercise frequency. 
+
+**Variables Used:** 
+
+Height in centimeters and Smoking frequency ranging from never, occasionally, regularly to never. 
+
+**Description:** 
+
+This visualization is demonstrates violin plots of all the subjects heights (in cm) split by their smoking frequency. A box plot is included within each violin plot to showing the quartiles, median, and respective outliers for each frequency. 
+
+
+
+# Understanding the Health of Nonwhite Subjects
+
+```{r, echo=FALSE}
+colorchoice = c("#d94041","#598fba","#73bd71","#a16baa","#f08c2b")
+
+ggplot(hersdata.comp[hersdata.comp$nonwhite=="yes",], aes(x=tchol, y=BMI,size=glucose, fill=globrat))+
+  geom_point(alpha = 0.6, shape=21)+
+  scale_size_continuous(breaks=c(100, 150, 200, 250))+
+  scale_x_continuous(breaks=c(200, 300,400))+
+  scale_fill_manual(values=colorchoice)+
+  labs(x="Total Cholesterol (mg/dl)", y="BMI (kg/m^2)", title="Understanding the Health of Nonwhite Subjects", fill="Health Rating", size="Fasting Glucose (mg/dl)")
+```
+
+**Dataset:** The dataset, hersdata, was the Heart and Estrogen/Progestin Study (HERS), a clinical trial of hormone therapy for prevention of recurrent heart attacks and deaths among 2,763 post-menopausal women with existing coronary heart disease. This study followed these women over several years but the data recorded was only at the baseline and 1 year after the study for both placebo and hormone therapy groups. 
+
+**Variables Used:** **Total cholesterol** in milligrams per deciliter as the explanatory variable, **BMI** in kilograms per meter squared as the response variable, self-reported health rating ranging from poor, fair, good, very good, and excellent determined by color of the point, fasting glucose in milligrams per deciliter determined by size of point. **This graph focused on only subjects who were of a non white ethnicity/race.**
+
+**Description:** This visualization is a scatterplot exploring the relationship total cholesterol has on a subject's body mass index (BMI). Additionally, the color of the point represents their self reported health in the study. The focus of this relationship was solely on subject's who had a non-white ethnicity/race. Using this graph, we can explore if subjects accurately measured their health and compare it to actual health measurements. 

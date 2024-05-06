@@ -1,0 +1,3 @@
+"0","set.seed(3)"
+"0","artwork.3= canvas_blacklight(colors = colorPalette(""blossom""), n=1000)"
+"0","saveCanvas(artwork.3, filename = ""Artwork3.png"")"

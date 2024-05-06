@@ -1,0 +1,1 @@
+"0","airline.data= read.csv(""customer_booking.csv"", header=TRUE)"

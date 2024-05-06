@@ -1,0 +1,60 @@
+{
+  "articles": [
+    {
+      "path": "airline.html",
+      "title": "Let's Fly!",
+      "author": [],
+      "date": "2024-05-06",
+      "contents": "\nAir Travel Story\nInfographicIntro to data: This dataset examined the booking trends of 50,000 bookings. Some metrics in this dataset included the number of passengers per booking, day of flight departure, departure hour, flight duration & more! This story explores the difference of booking patterns between groups of 2 and under versus groups of three or more passengers.\n\n\n\n\n\n\n\n\n\n\n\n\nFlight Duration Across Different Passenger Groups\n\n\n\nOut of 50,000 bookings analyzed, groups of three or more passengers typically experience median flight durations of 7.05 hours, while singles and duos have slightly longer median flights at 7.5 hours.\n\n\n\nBooking Dates for Passengers in Singles & Duos versus Trios & More\n\n\n\nUsing these histograms, we are able to see the distribution of the days between booking and travel dates for different numbers of passengers. Separated by two histograms, groups of 3 or more passengers book their flights an average of 46 day in advance from their travel date. It may be important to note that usually, group flights require more planning and preparing, which leads to needing to book flights in advance.\nInteractive Plot: Trends by Flight Hour for Different Passenger Groups\n\n\n\nThis interactive plot lets you analyze the trends of departure time for each passenger groups and the count for each flight time! As a single traveler myself, I might be more enticed to book a flight at less busier times.\nFlight Day vs. Flight Hour Heatmap\n\n\n\nThis heat map analyzes the different flight hour-flight day combinations. Based off this graph, we can see the biggest combinations come are from Monday through Thursday 8am to 1pm. This helps us understand how busy an airport can get on specific days and times of the week. For future travelers, this could be helpful in deciding which flights will have the calmest or quietest airport environment. It could even help you determine when TSA lines will be the shortest!\nLength of Stay for Different Passenger Groups\n\n\n\nUsing this histogram, we can see that the length of stay for singles and duos last about 9.62 days longer than groups of 3 or more passengers. In terms of relationships, it is typically less expensive to travel as a couple rather than as a family, possibly leading to an increased number of days on vacation.\nBookings by Day of the Week for Different Passenger Groups\n\n\n\n\n\n\nThis dataset analyzes 50,000 bookings using metrics such as passenger count for each booking and what day of the week it was booked for. Using these two metrics, we can see which day of the week is most common for different number of passengers in this interactive plot. This could influence the decision on what day of the week to book a flight based on how many passengers in your group!\n\n\n\n",
+      "last_modified": "2024-05-06T14:44:50-04:00"
+    },
+    {
+      "path": "artwork.html",
+      "title": "GeneRative Artwork",
+      "author": [],
+      "date": "2024-04-19",
+      "contents": "\n\n\n\nArt Piece #1\nAnother Solar System\n\n\n\nArtwork 1Art Piece #2\nBucky’s Maze\n\n\n\nArtwork 2Art Piece #3\nBarbie’s Lucid Dream\n\n\n\nArtwork 3\n\n\n",
+      "last_modified": "2024-05-06T14:44:52-04:00"
+    },
+    {
+      "path": "courses.html",
+      "title": "Past Course Visualizations",
+      "description": "Over the semester, we worked with datasets in RStudio and used the data to translate them into visualizations. These two came from a past assignment and an exam. ",
+      "author": [],
+      "contents": "\nTwo of My Favorite Visualizations\n\n\n\nHeight across Various Smoking Frequencies\n\n\n\nDataset:\nThe data set used is a basic survey of subjects ranging from 16 to 70 years old that measured variables such as height, pulse, and exercise frequency.\nVariables Used:\nHeight in centimeters and Smoking frequency ranging from never, occasionally, regularly to never.\nDescription:\nThis visualization is demonstrates violin plots of all the subjects heights (in cm) split by their smoking frequency. A box plot is included within each violin plot to showing the quartiles, median, and respective outliers for each frequency.\nUnderstanding the Health of Nonwhite Subjects\n\n\n\nDataset: The dataset, hersdata, was the Heart and Estrogen/Progestin Study (HERS), a clinical trial of hormone therapy for prevention of recurrent heart attacks and deaths among 2,763 post-menopausal women with existing coronary heart disease. This study followed these women over several years but the data recorded was only at the baseline and 1 year after the study for both placebo and hormone therapy groups.\nVariables Used: Total cholesterol in milligrams per deciliter as the explanatory variable, BMI in kilograms per meter squared as the response variable, self-reported health rating ranging from poor, fair, good, very good, and excellent determined by color of the point, fasting glucose in milligrams per deciliter determined by size of point. This graph focused on only subjects who were of a non white ethnicity/race.\nDescription: This visualization is a scatterplot exploring the relationship total cholesterol has on a subject’s body mass index (BMI). Additionally, the color of the point represents their self reported health in the study. The focus of this relationship was solely on subject’s who had a non-white ethnicity/race. Using this graph, we can explore if subjects accurately measured their health and compare it to actual health measurements.\n\n\n\n",
+      "last_modified": "2024-05-06T14:44:56-04:00"
+    },
+    {
+      "path": "ggplot.html",
+      "title": "GGPlot Extension Project",
+      "author": [],
+      "date": "2024-04-22",
+      "contents": "\nGGPlot Extension: Wordcloud\nUsing ggwordcloud, we can create word clouds using the names from a categorical variable and scaling it based off a quantitative variable. A fun thing about word cloud is that you can change the shape of it! By default, the words are placed in a circular spiral. By adding ‘shape=’ within the ‘geom_text_wordcloud’ function, you can customize how you want it to be shaped. We can also map the color to a value! In our case we can color the words by region.\nAdditionally, we can color use a gradient\n\n\n\nWord Cloud of Countries\n\n\n\nData Set: The data set used was the Happy Planet Index dataset that included 143 countries and their respective region, life expectancy, GDP Per Capita, Happiness Index, and more.\nVariables Used: The variables used in this visualization is country name, population size, and region index.\nDescription: This ggword cloud uses the quantitative variable, population size, to scale the size of the country name. In this visualization, the biggest country names have the highest population size. Additionally, I used a third variable, the categorical variable of region index to color the country names in a gradient. The 143 countries are sorted into seven regions with region 1 being the color gold and region 7 being the color brown.\n\n\n\n",
+      "last_modified": "2024-05-06T14:45:07-04:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Kacy Alejo-Rios",
+      "author": [],
+      "contents": "\n\n          \n          \n          Kacy Alejo-Rios\n          \n          \n          Home\n          \n          \n          Past Visualizations\n           \n          ▾\n          \n          \n          Homework\n          GGPlot Extension\n          Generative aRt\n          \n          \n          Air Travel Story\n          Shiny App\n          ☰\n          \n          \n      \n        \n          \n            Kacy Alejo-Rios\n          \n          \n            \n              MATH 230 Journey\n              I am a current sophomore at Bucknell University,\n              majoring in Economics at the School of Arts &\n              Sciences. I live in Los Angeles, California.\n            \n            \n              MATH 230 Journey\n              I am a current sophomore at Bucknell University,\n              majoring in Economics at the School of Arts &\n              Sciences. I live in Los Angeles, California.\n            \n          \n\n          \n            \n              \n                  \n                    \n                      LinkedIn\n                    \n                  \n                \n                                \n                  \n                    \n                      Email\n                    \n                  \n                \n                              \n          \n\n          \n            \n              \n                                \n                  \n                    LinkedIn\n                  \n                \n                                \n                  \n                    Email\n                  \n                \n                              \n            \n          \n        \n      \n    \n\n    \n    \n    ",
+      "last_modified": "2024-05-06T14:45:11-04:00"
+    },
+    {
+      "path": "shiny.html",
+      "title": "shiny",
+      "author": [],
+      "date": "2024-04-22",
+      "contents": "\nConfidence Interval App\n\n\n\n\n\n",
+      "last_modified": "2024-05-06T14:45:13-04:00"
+    },
+    {
+      "path": "sleep.html",
+      "title": "sleep",
+      "author": [],
+      "date": "2024-04-20",
+      "contents": "\nSleep Story\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "last_modified": "2024-05-06T14:45:20-04:00"
+    }
+  ],
+  "collections": []
+}

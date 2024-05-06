@@ -1,0 +1,8 @@
+"0","#3"
+"0","#alcohol & rem "
+"0","ggplot(sleep.comp, aes(x = cut.alc, y = REM.sleep.percentage, fill=cut.alc)) +"
+"0","  geom_violin(alpha = 0.5) +"
+"0","  geom_boxplot(width = 0.1, color = ""black"", outlier.shape = NA) +"
+"0","  scale_fill_manual(values=c(""skyblue"",""#FDD017"",""maroon""))+"
+"0","  labs(x = ""Alcohol Consumption"", y = ""REM Sleep Percentage"") +"
+"0","  ggtitle(""REM Sleep by Alc"")"

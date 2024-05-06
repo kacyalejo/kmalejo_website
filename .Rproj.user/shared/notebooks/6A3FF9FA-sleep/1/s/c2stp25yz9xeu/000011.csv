@@ -1,0 +1,6 @@
+"0","#2"
+"0","ggplot(sleep.comp, aes(x =Alcohol.consumption, y=Sleep.efficiency, color=Gender)) + "
+"0","  geom_point(alpha = 1/3)+"
+"0","  scale_color_manual(values=c(""#b28225"", ""#197c6b""))+"
+"0","  geom_smooth(method=lm)+"
+"0","  labs(x=""Alcohol Consumption (oz)"", y=""Sleep Effciency (%)"")"

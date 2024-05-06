@@ -1,0 +1,40 @@
+---
+title: "GGPlot Extension Project"
+date: "2024-04-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## GGPlot Extension: Wordcloud
+
+Using ggwordcloud, we can create word clouds using the names from a categorical variable and scaling it based off a quantitative variable. A fun thing about word cloud is that you can change the shape of it! By default, the words are placed in a circular spiral. By adding 'shape=' within the 'geom_text_wordcloud' function, you can customize how you want it to be shaped. We can also map the color to a value! In our case we can color the words by region. 
+Additionally, we can color use a gradient
+
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(ggwordcloud)
+library(Lock5Data)
+data("HappyPlanetIndex")
+```
+
+
+# Word Cloud of Countries
+
+```{r, echo=FALSE}
+set.seed(1)
+ggplot(HappyPlanetIndex, aes(label = Country, size = Population, color=Region)) +
+  geom_text_wordcloud(shape="star") +
+  scale_size_area(max_size = 15) +
+  theme_minimal()+
+  scale_color_gradient(low="gold", high="brown")
+```
+
+Data Set: The data set used was the Happy Planet Index dataset that included 143 countries and their respective region, life expectancy, GDP Per Capita, Happiness Index, and more.  
+
+Variables Used: The variables used in this visualization is country name, population size, and region index. 
+
+Description: This ggword cloud uses the quantitative variable, population size, to scale the size of the country name. In this visualization, the biggest country names have the highest population size. Additionally, I used a third variable, the categorical variable of region index to color the country names in a gradient. The 143 countries are sorted into seven regions with region 1 being the color gold and region 7 being the color brown. 
+

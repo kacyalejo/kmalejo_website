@@ -1,0 +1,7 @@
+"0","ggplot(survey.sub, aes(x=Smoke, y=Height, fill=Smoke))+"
+"0","  geom_violin(scale=""width"", alpha=0.5)+"
+"0","  geom_boxplot(width=.25)+"
+"0","  labs(x=""Smoking Frequency"", y=""Height (cm)"")+"
+"0","  ggtitle(""Violin Plots of Height across Smoking Frequencies"")+ "
+"0","scale_color_manual(values = wes_palette(""GrandBudapest2"")) + "
+"0","  scale_fill_manual(values = wes_palette(""GrandBudapest2""),name=""Smoking Frequency"", labels = c(""Heavy"", ""Never"", ""Occasionally"", ""Regularly""))"

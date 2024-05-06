@@ -1,0 +1,8 @@
+"0","#1"
+"0","#violin plot of exercise frequency "
+"0","ggplot(sleep.comp, aes(x = cut.exercise, y = Sleep.efficiency, fill=cut.exercise)) +"
+"0","  geom_violin(alpha = 0.5) +"
+"0","  geom_boxplot(width = 0.1, color = ""black"", outlier.shape = NA) +"
+"0","  scale_fill_manual(values=c(""skyblue"",""#FDD017"",""maroon""))+"
+"0","  labs(x = ""Exercise Frequency"", y = ""Sleep Efficiency"") +"
+"0","  ggtitle(""Sleep Efficiency by Exercise frequency"")"

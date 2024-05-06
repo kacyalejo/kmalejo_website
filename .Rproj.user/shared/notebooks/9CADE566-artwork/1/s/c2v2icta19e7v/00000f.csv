@@ -1,0 +1,4 @@
+"0","set.seed(2)"
+"0","artwork.2= canvas_maze(color = c(""#EF5B0C""), walls= c(""#003865""), background = ""white"", polar=TRUE)"
+"0","# see ?canvas_maze for more input parameters of this function"
+"0","saveCanvas(artwork.2, filename = ""Artwork2.png"")"

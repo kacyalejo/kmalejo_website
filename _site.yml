@@ -1,0 +1,23 @@
+name: "kmalejo_website"
+title: "Kacy Alejo-Rios"
+theme: web.css
+description: |
+  Kacy Alejo
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Past Visualizations"
+      menu: 
+      - text: "Homework"
+        href: courses.html
+      - text: "GGPlot Extension"
+        href: ggplot.html 
+      - text: "Generative aRt"
+        href: artwork.html
+    - text: "Air Travel Story"
+      href: airline.html
+    - text: "Shiny App"
+      href: shiny.html
+output: distill::distill_article

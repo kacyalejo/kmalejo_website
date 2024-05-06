@@ -1,0 +1,21 @@
+---
+title: "Kacy Alejo-Rios"
+image: "kacy.png"
+links:
+  - label: LinkedIn
+    url: "www.linkedin.com/in/kacy-alejo-rios"
+  - label: Email
+    url: "mailto:alejokacy24@gmail.com"
+site: distill::distill_website
+output:
+  postcards::jolla
+---
+MATH 230 Journey 
+
+
+I am a current sophomore at Bucknell University, majoring in Economics at the School of Arts & Sciences. I live in Los Angeles, California.
+
+
+
+
+
